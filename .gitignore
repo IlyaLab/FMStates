@@ -1,0 +1,22 @@
+__pycache__
+.ipynb_checkpoints
+Manuscript
+.vscode
+lightning_logs
+project/Dataset
+project/Notebooks/Others
+project/Sample_input/
+project/Sample_output/
+project/Notebooks/Example2_Depmap-Neural-Network.ipynb
+project/Notebooks/Example2_KNN.ipynb
+project/Notebooks/Example2_Neural Network_classifer.ipynb
+project/Notebooks/Example2_NN_result.ipynb
+project/Notebooks/Example3_QueryData_from_GDSC.ipynb
+project/Notebooks/Others/
+project/Not_used/
+project/NN_Classifier/
+project/data/
+project/classifier_0801/
+project/Script/data
+Example2_Depmap.ipynb
+project/Script/Not_used
