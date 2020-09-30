@@ -122,7 +122,7 @@ def drug_response_curve(drug,a,b,c,d,fit_num_param,annotation_col_1,data_matrix_
     #y = np.asarray([d + c / (1 + np.exp(-1 * (0) / b ))] * len(x))
     y = np.asarray([drug_curve(a,fit_num_param)] * len(x))
     plt.plot(x, y, 'k--')
-    plt.xlabel("log2_IC50(µM)", fontdict=None, labelpad=None)
+    plt.xlabel("log2_Concentration(µM)", fontdict=None, labelpad=None)
     plt.ylabel("Percentage of Valibility", fontdict=None, labelpad=None)
     plt.title(drug)
     plt.savefig(output_dir+'/'+drug+'_drugResponse_curve.png', dpi=300)
