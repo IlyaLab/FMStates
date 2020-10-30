@@ -1,5 +1,5 @@
 Usage: 
-Before building the framework, make sure docker is installed and running in your system.
+Before building the framework, make sure docker is installed and running in your system. All datasts used in the manuscript of "Functional module states framework reveals cell states for drug and target prediction" by Guangrong Qin et al., can be found in https://osf.io/34xnm/?view_only=5b968aebebe14d4c97ff9d7ce4cb5070
 
 Step 1: initate and build the environment
 ./cli.rb build
