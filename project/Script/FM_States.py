@@ -19,6 +19,18 @@ from statsmodels.stats import multitest
 
 ROOT_DIR = os.path.abspath("../")
 
+#### Load functional modules
+def load_function_modules(FM):
+    KEGG_modules = pd.read_csv(FM,header= None, names = ("name","member"))
+    KEGG_modules['description'] = KEGG_modules['name']
+    KEGG_modules.columns = ["name",'member','description']
+    dic_module = {}
+    module_list = list(set(KEGG_modules['name']))#
+    for module in module_list:
+        dic_module[module] = list(set(KEGG_modules[KEGG_modules['name'] == module]['member']))
+    return(dic_module, KEGG_modules)
+
+
 #### Define functional module factors. Here we defined up_regulation_strength, down_regulation_strength, ssGSEA, and TF_strength as shown below. User can also define their own factors. 
 
 def intersection(lst1, lst2): 

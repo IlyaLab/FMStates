@@ -11,9 +11,9 @@ RUN conda install -c conda-forge --quiet --yes \
     pip install google-cloud-bigquery && \
     pip install lifelines && \
     pip install plotly==4.5.0 && \
-    pip install cyjupyter && \
-    pip install torch && \
-    pip install pytorch-lightning
+    pip install cyjupyter 
+
+RUN chmod -R go+rw /home/jovyan/ && chmod -R go+x /home/jovyan/.jupyter
 
 WORKDIR /project
 CMD [ "/bin/bash" ]

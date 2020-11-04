@@ -49,7 +49,7 @@ def Jaccard_coef(module_selected_gmt, name, member):
 ### Load functional modules
 def load_function_modules(label):
     if label == "KEGG":
-        KEGG_level3 = pd.read_csv(os.path.join(ROOT_DIR,"Dataset/KEGG_GENE_level3.csv"),header= None, names = ("name","member"))
+        KEGG_level3 = pd.read_csv(os.path.join(ROOT_DIR,"Dataset/KEGG_GENE_level3_select.csv"),header= None, names = ("name","member"))
         KEGG_level2 = pd.read_csv(os.path.join(ROOT_DIR,"Dataset/KEGG_GENE_level2_select.csv"),header= None, names = ("name","member"))
         KEGG_modules = pd.concat([KEGG_level2, KEGG_level3])
 
