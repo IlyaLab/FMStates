@@ -1,6 +1,8 @@
 Usage: 
 Before building the framework, make sure docker is installed and running in your system. All datasets used in the manuscript of "Functional module states framework reveals cell states for drug and target prediction" by Guangrong Qin et al., can be found in https://osf.io/34xnm/?view_only=5b968aebebe14d4c97ff9d7ce4cb5070
 
+After clone all the scripts in the repo, the following steps will help you to get familar with the notebooks developed in this project. 
+
 Step 1: imitates and build the environment
 ./cli.rb build
 
@@ -10,6 +12,7 @@ Step 2: run the docker image
 It will initiate the notebook server in a docker environment, to access the notebook, open the URLs in a browser. 
 
 Example jupyter notebooks:
+To run the example jupyter notebook as shown in the manuscript, download all files from the directory of 'Sample_input' from https://osf.io/34xnm/?view_only=5b968aebebe14d4c97ff9d7ce4cb5070, and put it under the 'project' directory.
 
 Example 1: Functional transcriptional states corresponding to drug treatment.
 ### Generate module specific Transcription factors (TFs) with enriched target genes in the context

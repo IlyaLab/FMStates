@@ -23,7 +23,7 @@ ROOT_DIR = os.path.abspath("../")
 def sele_pairs(evidence):
     ## evidence should be a list, among the list, only 'chipSeq','TFbindingMotif','curated' are effective selection.
     TF_pair_all = pd.read_csv(os.path.join(ROOT_DIR, 'Dataset/database.csv')) #Data from Luz Garcia-Alonso et al., Genome biology, 2019. 
-
+    #TF_pair_all = pd.read_csv("https://genome.cshlp.org/content/suppl/2021/03/02/gr.240663.118.DC2/Revised_Supplemental_Table_S3.csv")
     if 'chipSeq' in evidence:
         TF_pair_chipSeq = TF_pair_all.loc[TF_pair_all['is_evidence_chipSeq'] == True]
     else:

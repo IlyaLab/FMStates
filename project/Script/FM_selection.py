@@ -46,18 +46,20 @@ def Jaccard_coef(module_selected_gmt, name, member):
     
     return(result)
 
-### Load functional modules
-def load_function_modules(label):
-    if label == "KEGG":
-        KEGG_level3 = pd.read_csv(os.path.join(ROOT_DIR,"Dataset/KEGG_GENE_level3_select.csv"),header= None, names = ("name","member"))
-        KEGG_level2 = pd.read_csv(os.path.join(ROOT_DIR,"Dataset/KEGG_GENE_level2_select.csv"),header= None, names = ("name","member"))
-        KEGG_modules = pd.concat([KEGG_level2, KEGG_level3])
+# ### Load functional modules
+# def load_function_modules(label, module_file_name):
+#     #if label == "KEGG":
+#     KEGG_modules = pd.read_csv(os.path.join(ROOT_DIR,"Dataset/"+module_file_name),header= None, names = ("name","member"))
+#     #KEGG_level3 = pd.read_csv(os.path.join(ROOT_DIR,"Dataset/KEGG_GENE_level3_select.csv"),header= None, names = ("name","member"))
+#     #KEGG_level2 = pd.read_csv(os.path.join(ROOT_DIR,"Dataset/KEGG_GENE_level2_select.csv"),header= None, names = ("name","member"))
+#     #KEGG_modules = pd.concat([KEGG_level2, KEGG_level3])
 
-        KEGG_modules['description'] = KEGG_modules['name']
-        KEGG_modules.columns = ["name",'member','description']
+#     KEGG_modules['description'] = KEGG_modules['name']
+#     KEGG_modules.columns = ["name",'member','description']
 
-        dic_module = {}
-        module_list = list(set(KEGG_modules['name']))#
-        for module in module_list:
-            dic_module[module] = list(set(KEGG_modules[KEGG_modules['name'] == module]['member']))
-        return(dic_module, KEGG_level2, KEGG_level3, KEGG_modules)
+#     dic_module = {}
+#     module_list = list(set(KEGG_modules['name']))#
+#     for module in module_list:
+#         dic_module[module] = list(set(KEGG_modules[KEGG_modules['name'] == module]['member']))
+
+#     return(dic_module,  KEGG_modules)

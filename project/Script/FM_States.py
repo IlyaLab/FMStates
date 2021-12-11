@@ -13,7 +13,7 @@ import scipy.stats as ss
 import statsmodels
 from statsmodels import stats
 from statsmodels.stats import multitest
-
+from gsva_py import gsva_py
 
 #### User input: User can select functional moduels and input the gene expression matrix 
 
@@ -136,23 +136,66 @@ def factor_down_absolute(data_matrix, GS_20,KEGG_modules):
 
 #Define factor 3: single sample GSEA enrichment score
 
+
+
 def factor_ssGSEA(data_matrix, GS_20,KEGG_modules):
     
-    from GSVA import gsva, gmt_to_dataframe
+    tempdir = ROOT_DIR+"/temp"
+
+    if os.path.exists(tempdir) == False:
+        try:
+            os.makedirs(tempdir)
+        except OSError:
+            print ("Creation of the directory %s failed" % tempdir)
+        else:
+            print ("Successfully created the directory %s " % tempdir)
+    else:
+        print ("INfO:  %s already exists!" % tempdir)
+
+    #from GSVA import gsva, gmt_to_dataframe
     import math
     limit = 1000
     n = math.ceil(data_matrix.shape[0] / limit)
     
     module_selected_gmt = KEGG_modules.loc[KEGG_modules['name'].isin( GS_20) ]
     
-    pathways_df = gsva(data_matrix.T,module_selected_gmt,mx_diff = False, parallel_sz = 2, method = 'ssgsea')
+    # pathways_df = gsva_py(data_matrix.T, geneset_df=module_selected_gmt,
+    #                     method='ssgsea',
+    #                     kcdf='Gaussian',
+    #                     abs_ranking=False,
+    #                     min_sz=1,
+    #                     max_sz=None,
+    #                     parallel_sz=4,
+    #                     #parallel_type="SOCK",
+    #                     mx_diff=True,
+    #                     #tau=None,
+    #                     ssgsea_norm=True,
+    #                     verbose=True,
+    #                     tempdir= tempdir)
+    #                     #mx_diff = False, 
+    #                     #kcdf='Gaussian',
+    #                     #parallel_sz = 2, method = 'ssgsea', verbose= True, tempdir=tempdir)
     
+
     matrix_factor_gsva = pd.DataFrame()
     result_list = []
+
     for i in range(0,n):
         print(i)
         data = data_matrix.iloc[i*1000: i*1000+1000]
-        pathways_df = gsva(data.T,module_selected_gmt,mx_diff = False, parallel_sz = 2, method = 'ssgsea')
+        #pathways_df = gsva(data.T,module_selected_gmt,mx_diff = False, parallel_sz = 2, method = 'ssgsea',verbose= True, tempdir=tempdir)
+        pathways_df = gsva_py(data.T, geneset_df=module_selected_gmt,
+                        method='ssgsea',
+                        kcdf='Gaussian',
+                        abs_ranking=False,
+                        min_sz=1,
+                        max_sz=None,
+                        parallel_sz=4,
+                        mx_diff=True,
+                        ssgsea_norm=True,
+                        verbose=False,
+                        tempdir= tempdir)
+
         result = pathways_df.T
         result.columns = result.columns.values + '_ssGSEA'
         result.index = list(data.index.values)
@@ -315,7 +358,7 @@ def Diff_comp(ctrl_factor,matrix_factor):
     for module in matrix_factor.columns.values:
         if sum(ctrl_factor[module]) != 0 :
             module_list.append(module)
-            static_p = scipy.stats.mannwhitneyu(ctrl_factor[module], matrix_factor[module], use_continuity=True, alternative=None)
+            static_p = scipy.stats.mannwhitneyu(ctrl_factor[module], matrix_factor[module], use_continuity=True, alternative="two-sided")
             p = static_p[1]
             p_list.append(p)
             M1 = np.mean(matrix_factor[module])
