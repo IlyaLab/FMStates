@@ -1,9 +1,10 @@
 Usage: 
 Before building the framework, make sure docker is installed and running in your system. All datasets used in the manuscript of "Functional module states framework reveals cell states for drug and target prediction" by Guangrong Qin et al., can be found in https://osf.io/34xnm/?view_only=5b968aebebe14d4c97ff9d7ce4cb5070
 
+
 After clone all the scripts in the repo, the following steps will help you to get familar with the notebooks developed in this project. 
 
-Step 1: initates and build the environment
+Step 1: initate and build the docker environment
 ./cli.rb build
 
 Step 2: run the docker image
