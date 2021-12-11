@@ -3,7 +3,7 @@ Before building the framework, make sure docker is installed and running in your
 
 After clone all the scripts in the repo, the following steps will help you to get familar with the notebooks developed in this project. 
 
-Step 1: imitates and build the environment
+Step 1: initates and build the environment
 ./cli.rb build
 
 Step 2: run the docker image
