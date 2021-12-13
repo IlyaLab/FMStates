@@ -467,7 +467,8 @@ def Get_features_one_vs_all_others(data,
         for state1 in states:
             for state2 in states:
                 if state1 != state2:
-                    if scipy.stats.ranksums(dic_comp[Factor][state1], dic_comp[Factor][state2])[1] > threshold:
+                    if scipy.stats.ranksums(dic_comp[Factor][state1], dic_comp[Factor][state2])[1] > threshold: #Note, orignal used
+                    #if scipy.stats.mannwhitneyu(dic_comp[Factor][state1], dic_comp[Factor][state2])[1] > threshold:
                         label = False
                         
         if label == True:
@@ -590,7 +591,8 @@ def Get_features_one_vs_one(data,
             count = 0
             for state2 in states:
                 if state1 != state2:
-                    if scipy.stats.ranksums(dic_comp[Factor][state1], dic_comp[Factor][state2])[1] > threshold:
+                    if scipy.stats.ranksums(dic_comp[Factor][state1], dic_comp[Factor][state2])[1] > threshold: #Note, orignal used. This has been changed in Dec11
+                    #if scipy.stats.mannwhitneyu(dic_comp[Factor][state1], dic_comp[Factor][state2])[1] > threshold:
                         label.append(False)
                     else:
                         label.append(True)
